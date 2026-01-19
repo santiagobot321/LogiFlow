@@ -43,10 +43,11 @@ Responsabilidades Técnicas:
 Integración de Mapas: Manejo de layers, marcadores y rutas.
 Simulación de Real-Time: Mockear WebSockets/SSE para mover el camión en el mapa.
 Manejo de estado global (Preferencias de usuario).
-🔄 Estrategia de Trabajo (Git Flow)
+
+## 🔄 Estrategia de Trabajo (Git Flow)
 Para evitar que se pisen el código, cada desarrollador trabajará en ramas separadas:
 
-Rama Base: main (o develop). Nadie commitea aquí directo.
+## Rama Base: main (o develop). Nadie commitea aquí directo.
 Ramas de Feature:
 Dev A: feature/operations-crud
 Dev B: feature/dashboard-kpis
@@ -54,17 +55,18 @@ Dev C: feature/tracking-map
 Integración:
 Al final de cada "Sprint" (o semana), se hacen Pull Requests (PRs) hacia develop.
 Regla: Un desarrollador NO puede aprobar su propio PR.
-🚀 Roadmap Sugerido (Siguientes Pasos)
-Semana 1: Fundamentos y UI
+
+## 🚀 Roadmap Sugerido (Siguientes Pasos)
+### Semana 1: Fundamentos y UI
 Todos: Acordar el Mock de Datos (JSON structure) para que todos usen los mismos campos.
 Dev A: Crear lista de shipments estática con Tailwind.
 Dev B: Maquetar el Dashboard con "Fake Data".
 Dev C: Instalar Leaflet y mostrar un mapa básico en el detalle.
-Semana 2: Lógica y Conexión
+### Semana 2: Lógica y Conexión
 Dev A: Formularios reactivos para crear/editar envíos.
 Dev B: Conectar gráficas a los servicios de datos (Services).
 Dev C: Hacer que el mapa reaccione al ID del envío seleccionado (Rutas dinámicas).
-Semana 3: Pulido y Full Stack (Opcional)
+### Semana 3: Pulido y Full Stack (Opcional)
 Integrar todo en una sola navegación fluida.
 Si deciden atacar el Backend, la división rota a:
 Dev A -> API Tiendas/Paquetes (Spring Boot CRUD)
