@@ -9,7 +9,7 @@ Transformar el prototipo actual (logiflow-app) en una aplicación completa, divi
 👥 Roles y Responsabilidades (Frontend Focus)
 Dado que el código actual es principalmente Frontend (Angular + Tailwind), esta división maximiza la productividad en el código existente.
 
-👷 Desarrollador A: Core & Operations
+# 👷 Desarrollador A: Core & Operations
 Enfoque: Gestión de datos maestros y flujo operativo diario. Es la "columna vertebral" del sistema.
 
 Módulos a Cargo:
