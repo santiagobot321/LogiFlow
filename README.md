@@ -19,7 +19,9 @@ Responsabilidades Técnicas:
 Definir interfaces base (Shipment, Customer).
 Crear servicios HTTP reutilizables para CRUD.
 Validación de formularios complejos.
-📊 Desarrollador B: Analytics & Reporting
+
+
+# 📊 Desarrollador B: Analytics & Reporting
 Enfoque: Visualización de datos y toma de decisiones gerenciales.
 
 Módulos a Cargo:
@@ -29,7 +31,9 @@ Responsabilidades Técnicas:
 Integración de librerías de gráficas.
 Manejo de grandes volúmenes de datos en el cliente (paginación/virtual scroll).
 Diseño de componentes de "Tarjetas de KPI".
-🗺️ Desarrollador C: Tracking & System
+
+
+# 🗺️ Desarrollador C: Tracking & System
 Enfoque: La experiencia en tiempo real y configuración del sistema. Es el "factor WOW" del proyecto.
 
 Módulos a Cargo:
