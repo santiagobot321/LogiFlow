@@ -1,0 +1,210 @@
+<div class="p-8 space-y-8">
+    <!-- Breadcrumb and Actions -->
+    <div class="flex items-center justify-between">
+        <div class="space-y-1">
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-400">
+                <span>Home</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-right">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+                <span class="text-blue-600">Customers</span>
+            </div>
+            <h2 class="text-2xl font-black text-slate-900">All Customers</h2>
+            <p class="text-sm font-medium text-slate-500">Manage your client base and view shipment relationships.</p>
+        </div>
+        <button
+            class="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-user-plus">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <line x1="19" x2="19" y1="8" y2="14" />
+                <line x1="22" x2="16" y1="11" y2="11" />
+            </svg>
+            Add New Customer
+        </button>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-3 gap-6">
+        @for (stat of customerStats; track stat.label) {
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex items-center justify-between">
+            <div class="space-y-1">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">{{stat.label}}</p>
+                <h4 class="text-2xl font-black text-slate-900 leading-none">{{stat.value}}</h4>
+            </div>
+            <div class="flex flex-col items-end gap-1">
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full" [ngClass]="{
+            'bg-emerald-50 text-emerald-600': stat.trend.startsWith('+'),
+            'bg-red-50 text-red-600': stat.trend.startsWith('-')
+          }">{{stat.trend}}</span>
+                <div class="h-10 w-16 bg-slate-50 rounded border border-slate-100 flex items-center justify-center">
+                    <!-- Sparkline Mock -->
+                    <svg width="40" height="15" class="text-slate-200">
+                        <path d="M0 10 L10 5 L20 12 L30 8 L40 10" fill="none" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Filters -->
+    <div class="flex items-center gap-4 py-1">
+        <div class="relative flex-1 max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-search">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+            </div>
+            <input type="text"
+                class="block w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-4 text-sm font-medium focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-sm transition-all"
+                placeholder="Filter customers...">
+        </div>
+
+        <select
+            class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 shadow-sm outline-none focus:ring-1 focus:ring-blue-500">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+        </select>
+
+        <select
+            class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 shadow-sm outline-none focus:ring-1 focus:ring-blue-500">
+            <option>Region</option>
+            <option>Global</option>
+            <option>North America</option>
+        </select>
+
+        <button
+            class="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-download-cloud">
+                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+                <path d="M12 12v9" />
+                <path d="m8 17 4 4 4-4" />
+            </svg>
+            Export
+        </button>
+    </div>
+
+    <!-- Customers Table -->
+    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr class="bg-slate-50/50 border-b border-slate-100 text-left">
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-6 w-10">
+                            <input type="checkbox" class="rounded border-slate-300">
+                        </th>
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Client Name</th>
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">ID</th>
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Primary Contact
+                        </th>
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Shipments
+                        </th>
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</th>
+                        <th class="py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest pr-6 text-right">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                    @for (cust of customers; track cust.id) {
+                    <tr class="hover:bg-slate-50/80 group transition-all">
+                        <td class="py-5 pl-6">
+                            <input type="checkbox" class="rounded border-slate-300">
+                        </td>
+                        <td class="py-5">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center text-xs font-black text-blue-600 border border-blue-100 shadow-sm">
+                                    {{cust.avatar}}</div>
+                                <div class="space-y-0.5">
+                                    <p class="text-sm font-bold text-slate-900">{{cust.name}}</p>
+                                    <p class="text-[10px] font-medium text-slate-400">{{cust.type}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-5 text-xs font-bold text-slate-500">#{{cust.id}}</td>
+                        <td class="py-5">
+                            <div class="flex items-center gap-2">
+                                <div class="h-6 w-6 rounded-full bg-slate-100 overflow-hidden">
+                                    <img src="https://ui-avatars.com/api/?name={{cust.contact}}&background=random"
+                                        alt="Contact">
+                                </div>
+                                <span class="text-sm font-semibold text-slate-700">{{cust.contact}}</span>
+                            </div>
+                        </td>
+                        <td class="py-5">
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-bold text-slate-900">{{cust.shipments}}</span>
+                                <div class="flex-1 max-w-[60px] h-1 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-500" [style.width.%]="cust.shipments * 2"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-5">
+                            <span class="rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-tighter"
+                                [ngClass]="{
+                  'bg-emerald-50 text-emerald-600': cust.status === 'Active',
+                  'bg-slate-100 text-slate-500': cust.status === 'Inactive',
+                  'bg-amber-50 text-amber-600': cust.status === 'Pending'
+                }">{{cust.status}}</span>
+                        </td>
+                        <td class="py-5 pr-6 text-right">
+                            <button class="text-slate-300 hover:text-slate-900 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-more-vertical">
+                                    <circle cx="12" cy="12" r="1" />
+                                    <circle cx="12" cy="5" r="1" />
+                                    <circle cx="12" cy="19" r="1" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="bg-slate-50/50 border-t border-slate-100 px-6 py-4 flex items-center justify-between">
+            <p class="text-xs font-bold text-slate-400">Showing <span class="text-slate-900">1</span> to <span
+                    class="text-slate-900">5</span> of <span class="text-slate-900">1,240</span> results</p>
+            <div class="flex items-center gap-2">
+                <button class="p-1 text-slate-400 hover:text-slate-900"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg></button>
+                <button class="h-8 w-8 rounded-lg bg-blue-600 text-xs font-bold text-white shadow-sm">1</button>
+                <button
+                    class="h-8 w-8 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">2</button>
+                <button
+                    class="h-8 w-8 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">3</button>
+                <button class="p-1 text-slate-400 hover:text-slate-900"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg></button>
+
+                <div class="ml-4 flex items-center gap-2">
+                    <span class="text-xs font-bold text-slate-400">Show</span>
+                    <select
+                        class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-bold text-slate-600 outline-none">
+                        <option>10</option>
+                        <option>25</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

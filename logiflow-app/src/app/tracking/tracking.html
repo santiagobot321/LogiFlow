@@ -1,0 +1,341 @@
+<div class="p-8 space-y-8">
+    <!-- Search and Header -->
+    <div class="flex items-center justify-between">
+        <div class="relative w-96">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-search">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+            </div>
+            <input type="text"
+                class="block w-full rounded-full border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-sm"
+                [placeholder]="'# ' + shipment.id">
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors">Update
+                Status</button>
+            <button class="relative rounded-full p-2 text-slate-500 hover:bg-slate-100 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-bell">
+                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                </svg>
+                <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 border-2 border-white"></span>
+            </button>
+            <div class="flex items-center gap-2 pl-4 border-l border-slate-200">
+                <div class="text-right">
+                    <p class="text-sm font-bold text-slate-900">Alex Morgan</p>
+                    <p class="text-xs text-slate-500">Logistics Manager</p>
+                </div>
+                <div class="h-10 w-10 rounded-full border-2 border-white shadow-sm overflow-hidden bg-slate-200">
+                    <img src="https://ui-avatars.com/api/?name=Alex+Morgan&background=random" alt="User">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shipment Title and Status -->
+    <div class="flex items-end justify-between">
+        <div class="space-y-2">
+            <div class="flex items-center gap-3">
+                <h2 class="text-3xl font-extrabold text-slate-900">Shipment #{{shipment.id}}</h2>
+                <span
+                    class="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600 border border-blue-100">{{shipment.status}}</span>
+            </div>
+            <div class="flex items-center gap-6 text-sm font-medium text-slate-500">
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-calendar">
+                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                        <path d="M16 2v4" />
+                        <path d="M8 2v4" />
+                        <path d="M3 10h18" />
+                    </svg>
+                    <span>ETA: {{shipment.eta}}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-package">
+                        <path d="m7.5 4.27 9 5.15" />
+                        <path
+                            d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                        <path d="m3.3 7 8.7 5 8.7-5" />
+                        <path d="M12 22V12" />
+                    </svg>
+                    <span>{{shipment.type}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <button
+                class="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 hover:bg-slate-50 shadow-sm transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-download">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" x2="12" y1="15" y2="3" />
+                </svg>
+                Download Report
+            </button>
+            <button
+                class="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 hover:bg-slate-50 shadow-sm transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-share-2">
+                    <circle cx="18" cy="5" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                    <circle cx="18" cy="19" r="3" />
+                    <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                    <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                </svg>
+                Share Tracking
+            </button>
+        </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="grid grid-cols-4 gap-6">
+        <!-- Origin -->
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="flex items-start gap-4">
+                <div class="rounded-lg bg-slate-50 p-2 text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-anchor">
+                        <path d="M12 22V8" />
+                        <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                        <circle cx="12" cy="5" r="3" />
+                    </svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Origin</p>
+                    <h4 class="text-lg font-bold text-slate-900">{{shipment.origin.city}}</h4>
+                    <p class="text-sm text-slate-500">{{shipment.origin.location}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Destination -->
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="flex items-start gap-4">
+                <div class="rounded-lg bg-slate-50 p-2 text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-navigation">
+                        <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Destination</p>
+                    <h4 class="text-lg font-bold text-slate-900">{{shipment.destination.city}}</h4>
+                    <p class="text-sm text-slate-500">{{shipment.destination.location}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Carrier -->
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="flex items-start gap-4">
+                <div class="rounded-lg bg-slate-50 p-2 text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-truck">
+                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                        <path d="M15 18H9" />
+                        <path d="M19 18h2a1 1 0 0 0 1-1v-4.2a3 3 0 0 0-1-2.1l-2.4-1.8A3 3 0 0 0 15 8V6" />
+                        <circle cx="7" cy="18" r="2" />
+                        <circle cx="17" cy="18" r="2" />
+                    </svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Carrier</p>
+                    <h4 class="text-lg font-bold text-slate-900">{{shipment.carrier.name}}</h4>
+                    <p class="text-sm text-slate-500">{{shipment.carrier.service}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Weight -->
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="flex items-start gap-4">
+                <div class="rounded-lg bg-slate-50 p-2 text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-scale">
+                        <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                        <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                        <path d="M7 21h10" />
+                        <path d="M12 3v18" />
+                        <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                    </svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Weight</p>
+                    <h4 class="text-lg font-bold text-slate-900">{{shipment.weight}}</h4>
+                    <p class="text-sm text-slate-500">{{shipment.pallets}} Pallets</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History and Map Section -->
+    <div class="grid grid-cols-2 gap-8">
+        <!-- Shipment History -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-history text-blue-600">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                    <path d="M3 3v5h5" />
+                    <path d="M12 7v5l4 2" />
+                </svg>
+                <h3 class="text-lg font-bold text-slate-900">Shipment History</h3>
+            </div>
+
+            <div class="relative space-y-8 pl-6">
+                <!-- Vertical Line -->
+                <div class="absolute left-1.5 top-0 bottom-0 w-0.5 bg-slate-100"></div>
+
+                @for (event of shipment.history; track event.status; let first = $first; let last = $last) {
+                <div class="relative">
+                    <!-- Timeline Node -->
+                    <div class="absolute -left-[22.5px] top-1 h-3.5 w-3.5 rounded-full border-2 bg-white"
+                        [class.bg-blue-600]="event.completed" [class.border-blue-600]="event.completed"
+                        [class.border-slate-300]="!event.completed" [class.ring-4]="event.current"
+                        [class.ring-blue-100]="event.current"></div>
+
+                    <div class="space-y-1">
+                        <h4 class="text-sm font-bold" [class.text-slate-900]="event.completed"
+                            [class.text-slate-400]="!event.completed">
+                            {{event.status}}
+                        </h4>
+                        <p class="text-xs font-medium text-slate-500 uppercase">{{event.location}}</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-400">
+                            <span>{{event.time}}</span>
+                            @if (event.relativeTime) {
+                            <span>•</span>
+                            <span class="text-blue-500 font-medium">({{event.relativeTime}})</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Map View (Mock) -->
+        <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm min-h-[400px]">
+            <!-- Map Background Placeholder -->
+            <div class="absolute inset-0 bg-[#e5e7eb] opacity-50"
+                style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px;">
+            </div>
+
+            <!-- Current Location Marker -->
+            <div class="absolute top-[20%] right-[30%] flex flex-col items-center">
+                <div class="bg-white rounded-lg px-3 py-2 shadow-lg border border-slate-200 mb-2">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase leading-tight">Current Location</p>
+                    <p class="text-xs font-bold text-slate-900 leading-tight">Lyon Area, FR</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-75"></div>
+                    <div class="relative h-4 w-4 bg-blue-600 border-2 border-white rounded-full shadow-md"></div>
+                </div>
+            </div>
+
+            <!-- Map Controls -->
+            <div class="absolute bottom-6 right-6 flex flex-col gap-2">
+                <button
+                    class="bg-white rounded-lg p-2 shadow-md border border-slate-200 text-slate-600 hover:text-blue-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-plus">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                    </svg>
+                </button>
+                <button
+                    class="bg-white rounded-lg p-2 shadow-md border border-slate-200 text-slate-600 hover:text-blue-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-minus">
+                        <path d="M5 12h14" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Badge Overlay -->
+            <div
+                class="absolute top-6 left-6 flex items-center gap-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/40 px-3 py-2 shadow-sm">
+                <div class="h-2 w-2 rounded-full bg-emerald-500"></div>
+                <span class="text-xs font-bold text-slate-700">Live Updates Enabled</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Details -->
+    <div class="grid grid-cols-2 gap-8">
+        <!-- Cargo Details -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-box text-blue-600">
+                    <path
+                        d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                    <path d="m3.3 7 8.7 5 8.7-5" />
+                    <path d="M12 22V12" />
+                </svg>
+                <h3 class="text-lg font-bold text-slate-900">Cargo Details</h3>
+            </div>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                    <span class="text-sm font-medium text-slate-500">Package Type</span>
+                    <span class="text-sm font-bold text-slate-900">{{shipment.cargo.packageType}}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                    <span class="text-sm font-medium text-slate-500">Dimensions</span>
+                    <span class="text-sm font-bold text-slate-900">{{shipment.cargo.dimensions}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documents -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-files text-blue-600">
+                    <path
+                        d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z" />
+                    <path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8" />
+                    <path d="M15 2v5h5" />
+                </svg>
+                <h3 class="text-lg font-bold text-slate-900">Documents</h3>
+            </div>
+            <div class="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 p-4">
+                <div class="flex items-center gap-4">
+                    <div class="rounded-lg bg-red-100 p-2 text-red-600 font-bold text-xs uppercase">PDF</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Bill of Lading (BOL)</p>
+                        <p class="text-xs text-slate-500 text-uppercase tracking-wider">PDF • 2.4 MB</p>
+                    </div>
+                </div>
+                <button class="text-slate-400 hover:text-blue-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-download">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

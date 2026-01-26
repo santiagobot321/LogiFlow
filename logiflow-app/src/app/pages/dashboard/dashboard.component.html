@@ -1,0 +1,210 @@
+<div class="p-8 space-y-8">
+    <!-- Header Title and Action -->
+    <div class="flex items-end justify-between">
+        <div class="space-y-1">
+            <h2 class="text-2xl font-bold text-slate-900">Dashboard Overview</h2>
+            <p class="text-sm font-medium text-slate-500">Real-time logistic metrics and fleet status.</p>
+        </div>
+        <div class="flex items-center gap-4">
+            <p class="text-xs font-medium text-slate-400 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-calendar text-slate-300">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <path d="M16 2v4" />
+                    <path d="M8 2v4" />
+                    <path d="M3 10h18" />
+                </svg>
+                Last updated: Just now
+            </p>
+            <button
+                class="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-plus">
+                    <path d="M5 12h14" />
+                    <path d="M12 5v14" />
+                </svg>
+                New Shipment
+            </button>
+        </div>
+    </div>
+
+    <!-- KPI Grid -->
+    <div class="grid grid-cols-4 gap-6">
+        @for (kpi of kpis; track kpi.label) {
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
+            <div class="flex items-start justify-between mb-4">
+                <div class="rounded-lg p-2" [ngClass]="{
+            'bg-blue-50 text-blue-600': kpi.color === 'blue',
+            'bg-indigo-50 text-indigo-600': kpi.color === 'indigo',
+            'bg-red-50 text-red-600': kpi.color === 'red',
+            'bg-emerald-50 text-emerald-600': kpi.color === 'emerald'
+          }">
+                    @if (kpi.icon === 'truck') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-truck">
+                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                        <path d="M15 18H9" />
+                        <path d="M19 18h2a1 1 0 0 0 1-1v-4.2a3 3 0 0 0-1-2.1l-2.4-1.8A3 3 0 0 0 15 8V6" />
+                        <circle cx="7" cy="18" r="2" />
+                        <circle cx="17" cy="18" r="2" />
+                    </svg> }
+                    @if (kpi.icon === 'navigation') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-navigation">
+                        <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg> }
+                    @if (kpi.icon === 'alert-triangle') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-alert-triangle">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                    </svg> }
+                    @if (kpi.icon === 'dollar-sign') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-dollar-sign">
+                        <line x1="12" x2="12" y1="2" y2="22" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg> }
+                </div>
+                <span class="text-xs font-bold" [ngClass]="{
+            'text-emerald-500': kpi.trend.startsWith('+'),
+            'text-red-500': kpi.trend.startsWith('-')
+          }">{{kpi.trend}}</span>
+            </div>
+            <div class="space-y-1">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">{{kpi.label}}</p>
+                <h4 class="text-2xl font-black text-slate-900 leading-none">{{kpi.value}}</h4>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Lower Sections -->
+    <div class="grid grid-cols-3 gap-8">
+        <!-- Chart Placeholder -->
+        <div class="col-span-2 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Shipment Volume by Region</h3>
+                    <p class="text-xs font-medium text-slate-400">Last 30 Days Performance</p>
+                </div>
+                <button class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-more-horizontal">
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="19" cy="12" r="1" />
+                        <circle cx="5" cy="12" r="1" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mock Chart -->
+            <div class="flex h-48 items-end justify-around gap-4 pt-4 border-b border-slate-100">
+                @for (region of ['North', 'South', 'East', 'West']; track region; let count = $index) {
+                <div class="flex flex-col items-center gap-4 flex-1">
+                    <div class="w-full flex flex-col gap-0.5">
+                        <div class="bg-blue-100 rounded-t-sm w-full" [style.height.%]="20 + (count * 10)"></div>
+                        <div class="bg-blue-600 rounded-b-sm w-full" [style.height.%]="30 + (count * 15)"></div>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">{{region}}</span>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Live Fleet Map Placeholder -->
+        <div class="rounded-2xl border border-slate-200 bg-slate-900 overflow-hidden relative shadow-sm">
+            <div class="absolute inset-0 bg-slate-800/50 backdrop-blur-[1px]">
+                <!-- Very simple mock map SVG -->
+                <svg class="w-full h-full text-slate-700/50" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M10 20 Q 30 10, 50 20 T 90 20 V 80 Q 70 90, 50 80 T 10 80 Z" />
+                </svg>
+            </div>
+
+            <div class="relative p-8 h-full flex flex-col">
+                <div class="flex items-center justify-between mb-auto">
+                    <h3 class="text-lg font-bold text-white">Live Fleet Overview</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </div>
+                </div>
+
+                <!-- Map Markers Mock -->
+                <div class="absolute top-[40%] left-[30%] h-3 w-3 rounded-full bg-blue-500 ring-4 ring-blue-500/30">
+                </div>
+                <div class="absolute top-[60%] left-[70%] h-3 w-3 rounded-full bg-orange-500 ring-4 ring-orange-500/30">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Shipments Table -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm overflow-hidden">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-lg font-bold text-slate-900">Recent Shipments</h3>
+            <div class="flex gap-2">
+                <button
+                    class="flex items-center gap-2 rounded-lg border border-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">Filter</button>
+                <button
+                    class="flex items-center gap-2 rounded-lg border border-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">Export</button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b border-slate-100 text-left">
+                        <th class="pb-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-2">Tracking ID
+                        </th>
+                        <th class="pb-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Customer</th>
+                        <th class="pb-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Route</th>
+                        <th class="pb-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">ETA</th>
+                        <th class="pb-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</th>
+                        <th class="pb-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-right pr-2">
+                            Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                    @for (shp of recentShipments; track shp.id) {
+                    <tr class="hover:bg-slate-50 group transition-all">
+                        <td class="py-4 pl-2 font-bold text-sm text-blue-600">#{{shp.id}}</td>
+                        <td class="py-4">
+                            <div class="flex items-center gap-2">
+                                <div
+                                    class="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-500">
+                                    {{shp.customer[0]}}</div>
+                                <span class="text-sm font-bold text-slate-900">{{shp.customer}}</span>
+                            </div>
+                        </td>
+                        <td class="py-4 font-medium text-sm text-slate-600">{{shp.route}}</td>
+                        <td class="py-4 font-medium text-sm text-slate-500">{{shp.eta}}</td>
+                        <td class="py-4">
+                            <span class="rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-tighter"
+                                [ngClass]="{
+                  'bg-blue-50 text-blue-600': shp.status === 'In Transit',
+                  'bg-emerald-50 text-emerald-600': shp.status === 'Delivered',
+                  'bg-amber-50 text-amber-600': shp.status === 'Delayed'
+                }">{{shp.status}}</span>
+                        </td>
+                        <td class="py-4 text-right pr-2">
+                            <button class="text-slate-300 hover:text-slate-900 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-more-horizontal">
+                                    <circle cx="12" cy="12" r="1" />
+                                    <circle cx="19" cy="12" r="1" />
+                                    <circle cx="5" cy="12" r="1" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

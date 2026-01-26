@@ -1,0 +1,4 @@
+/* Estilos específicos para Tracking (si se requieren) */
+:host {
+  display: block;
+}
